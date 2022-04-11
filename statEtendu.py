@@ -12,6 +12,8 @@ def figure_et():
 
 def etendu_mois(df):
     et=[]
+    indexNames = df[df['prices'] <= 20].index
+    df.drop(indexNames, inplace=True)
     list_mois = df['start_date'].unique()
     print(list_mois)
     for i in range(len(list_mois)):

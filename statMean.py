@@ -12,6 +12,8 @@ def figure():
 
 def moyenne_mois(df):
     moyenne=[]
+    indexNames = df[df['prices'] <= 20].index
+    df.drop(indexNames, inplace=True)
     list_mois = df['start_date'].unique()
     print(list_mois)
     for i in range(len(list_mois)):
