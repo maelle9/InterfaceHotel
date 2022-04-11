@@ -2,10 +2,12 @@ import pandas as pd
 import numpy as np
 import datetime
 import plotly.express as px
+from plotly import colors
+
 
 def figure():
     df_total = pd.read_csv("stat.csv", sep=";")
-    fig = px.line(df_total, x="date", y="mean")
+    fig = px.line(df_total, x="date", y="mean", markers=True, color_discrete_sequence = [ "#82DAD0"])
     return fig
 
 

@@ -48,36 +48,53 @@ table = dash_table.DataTable( id = 'table_data',
 
 
 
-tab1 = html.Div([ html.H3('Accueil'),
-            html.Div([
+tab1 = html.Div([
                 html.P('Projet de Clément REIFFERS, Quentin MOREL, Maëlle MARCELIN, Adrien TIRLEMONT'),
                 html.P("Récupération de données d'hôtel et analyse "),
                 html.Div([
-                    dcc.Dropdown(
-                        id='stars',
-                        options=[{'label': i, 'value': i} for i in stars_choice],
-                        value=10
-                    ),
-                    dcc.Dropdown(
-                        id='date',
-                        options=[{'label': i, 'value': i} for i in date_choice],
-                        value="all"
-                    ),
-                    dcc.Dropdown(
-                        id='nb_adulte',
-                        options=[{'label': i, 'value': i} for i in adulte_choice],
-                        value=10
-                    ),
-                    dcc.Dropdown(
-                        id='nb_enfant',
-                        options=[{'label': i, 'value': i} for i in enfant_choice],
-                        value=10
-                    ),
-                    dcc.Dropdown(
-                        id='nb_room',
-                        options=[{'label': i, 'value': i} for i in room_choice],
-                        value=10
-                    ),
-                ],style={'width': '10%'})
-            ])
+                    html.Div([
+                        dcc.Dropdown(
+                            id='stars',
+                            clearable=False,
+                            options=[{'label': i, 'value': i} for i in stars_choice],
+                            value=10
+                        ),
+                        html.P("Nombre d'étoile", style={'font_size': '2px'})
+                    ],style={'display':'inline-block'}),
+                    html.Div([
+                        dcc.Dropdown(
+                            id='date',
+                            clearable=False,
+                            options=[{'label': i, 'value': i} for i in date_choice],
+                            value="all"
+                        ),
+                        html.P("Date de départ", style={'font_size': '2px'})
+                    ],style={'display':'inline-block'}),
+                    html.Div([
+                        dcc.Dropdown(
+                            id='nb_adulte',
+                            clearable=False,
+                            options=[{'label': i, 'value': i} for i in adulte_choice],
+                            value=10
+                        ),html.P("Nombre d'adulte", style={'font_size': '2px'})
+                    ],style={'display':'inline-block'}),
+                    html.Div([
+                        dcc.Dropdown(
+                            id='nb_enfant',
+                            clearable=False,
+                            options=[{'label': i, 'value': i} for i in enfant_choice],
+                            value=10
+                        ),
+                        html.P("Nombre d'enfant", style={'font_size': '2px'})
+                    ],style={'display':'inline-block'}),
+                    html.Div([
+                        dcc.Dropdown(
+                            id='nb_room',
+                            clearable=False,
+                            options=[{'label': i, 'value': i} for i in room_choice],
+                            value=10
+                        ),
+                        html.P("Nombre de chambre", style={'font_size': '2px'})
+                    ],style={'display':'inline-block'})
+                ], style={"textAlign":"center"})
 ])
