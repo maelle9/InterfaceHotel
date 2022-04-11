@@ -42,8 +42,23 @@ table = dash_table.DataTable( id = 'table_data',
                               style_table = {'height': 400},
                               style_data =  {
                                  'width': '{}%'.format(100. / lenght),
-                                 'textOverflow': 'hidden'
-                             })
+                                 'textOverflow': 'hidden',
+                                 'backgroundColor': '#606165',
+                                 'color': 'white'
+                             },
+                              style_data_conditional=[
+                                  {
+                                      'if': {'row_index': 'odd'},
+                                      'backgroundColor': '#9EA0A7',
+                                  }
+                              ],
+                             style_header = {
+                               'backgroundColor': '#1E1E1E',
+                               'color': 'white'
+                             },
+                             style_cell={'textAlign': 'center'}
+
+)
 
 
 
@@ -60,7 +75,7 @@ tab1 = html.Div([
                             value=10
                         ),
                         html.P("Nombre d'étoile", style={'font_size': '2px'})
-                    ],style={'display':'inline-block'}),
+                    ],style={'display':'inline-block', 'width': '{}%'.format(100. / 5)}),
                     html.Div([
                         dcc.Dropdown(
                             id='date',
@@ -69,7 +84,7 @@ tab1 = html.Div([
                             value="all"
                         ),
                         html.P("Date de départ", style={'font_size': '2px'})
-                    ],style={'display':'inline-block'}),
+                    ],style={'display':'inline-block', 'width': '{}%'.format(100. / 5)}),
                     html.Div([
                         dcc.Dropdown(
                             id='nb_adulte',
@@ -77,7 +92,7 @@ tab1 = html.Div([
                             options=[{'label': i, 'value': i} for i in adulte_choice],
                             value=10
                         ),html.P("Nombre d'adulte", style={'font_size': '2px'})
-                    ],style={'display':'inline-block'}),
+                    ],style={'display':'inline-block', 'width': '{}%'.format(100. / 5)}),
                     html.Div([
                         dcc.Dropdown(
                             id='nb_enfant',
@@ -86,7 +101,7 @@ tab1 = html.Div([
                             value=10
                         ),
                         html.P("Nombre d'enfant", style={'font_size': '2px'})
-                    ],style={'display':'inline-block'}),
+                    ],style={'display':'inline-block', 'width': '{}%'.format(100. / 5)}),
                     html.Div([
                         dcc.Dropdown(
                             id='nb_room',
@@ -95,6 +110,6 @@ tab1 = html.Div([
                             value=10
                         ),
                         html.P("Nombre de chambre", style={'font_size': '2px'})
-                    ],style={'display':'inline-block'})
+                    ],style={'display':'inline-block', 'width': '{}%'.format(100. / 5)})
                 ], style={"textAlign":"center"})
 ])
