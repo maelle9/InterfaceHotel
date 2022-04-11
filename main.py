@@ -1,11 +1,9 @@
 
 from dash import Dash, html, dcc, Input, Output, dash_table
 import dash_bootstrap_components as dbc
-from plotly import colors
-
 import table_data
 import update
-import statMean
+
 
 # Load data
 app = Dash(__name__, external_stylesheets=[dbc.themes.JOURNAL])  # initialisation du dash app
@@ -40,12 +38,13 @@ app.layout = html.Div([
             ])
         ]),
         dcc.Tab(label='Statistique', value='tab-2-statistique', style=tab_style, selected_style=tab_selected_style, children=[
-            html.Div([
-                dcc.Graph(
-                    id='stat-2',
-                    figure=statMean.figure()
+            dcc.Graph(id="graph"),
+            dcc.RadioItems(
+                id="choice",
+                options=["moyenne", "médiane", "étendue"],
+                value="moyenne",
+                inline=True
             )
-        ])
         ]),
         dcc.Tab(label='Carte', value='tab-3-carte',style=tab_style, selected_style=tab_selected_style, children=[
                         html.Div([
@@ -59,16 +58,19 @@ app.layout = html.Div([
 
 ],style = {'backgroundColor': '#82DAD0'})
 
-@app.callback(Output('table_data', 'data'),
+@app.callback([Output('table_data', 'data'),
+               Output('graph','figure')],
               [Input('stars', 'value'),
                Input('date', 'value'),
                Input('nb_adulte', 'value'),
                Input('nb_enfant', 'value'),
-               Input('nb_room', 'value')
+               Input('nb_room', 'value'),
+               Input('choice','value')
                ])
-def render_content(stars,date,nb_adulte,nb_enfant,nb_room):
-    table = update.update(stars, date, nb_adulte, nb_enfant, nb_room)
-    return table
+def render_content(stars,date,nb_adulte,nb_enfant,nb_room,choice):
+    table = update.update_table(stars, date, nb_adulte, nb_enfant, nb_room)
+    fig = update.update_graph(choice)
+    return table,fig
 
 
 

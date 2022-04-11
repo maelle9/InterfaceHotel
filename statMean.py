@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import datetime
 import plotly.express as px
-from plotly import colors
 
 
 def figure():
@@ -24,14 +23,7 @@ def moyenne_mois(df):
         mois=[]
         df = df[['start_date','prices']]
         df_mois = df[(df['start_date']== i)]
-        new_list = []
-        for j in range(len(df_mois['prices'])):
-            price_space=df_mois['prices'].iloc[j].replace("\u202f","")
-            prix_space = price_space.replace(" ","")
-            prix=prix_space.replace(',', '.')
-            new_list.append(float(prix))
         mois.append(i)
-        df_mois['prices'] = df_mois['prices'].replace(df_mois['prices'].values, new_list)
         price = df_mois["prices"].mean()
         mois.append(price)
         moyenne.append(mois)
