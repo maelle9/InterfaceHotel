@@ -3,6 +3,7 @@ from dash import Dash, html, dcc, Input, Output, dash_table
 import dash_bootstrap_components as dbc
 import table_data
 import update
+import accueil
 
 
 # Load data
@@ -29,15 +30,21 @@ tab_selected_style = {
 
 
 app.layout = html.Div([
-    html.H1("Hotel", style={'textAlign': 'center'}),
+    html.H1("Hotel à Paris", style={'textAlign': 'center'}),
+    html.P('Projet de Clément REIFFERS, Quentin MOREL, Maëlle MARCELIN, Adrien TIRLEMONT'),
     dcc.Tabs(id="tabs-hotel", value='tab-1-accueil', children=[
         dcc.Tab(label='Accueil', value='tab-1-accueil',style=tab_style, selected_style=tab_selected_style, children=[
+            html.Div([
+            accueil.accueil
+            ])
+        ]),
+        dcc.Tab(label='Recherche', value='tab-2-recherche',style=tab_style, selected_style=tab_selected_style, children=[
             html.Div([
             table_data.tab1,
             table_data.table
             ])
         ]),
-        dcc.Tab(label='Statistique', value='tab-2-statistique', style=tab_style, selected_style=tab_selected_style, children=[
+        dcc.Tab(label='Statistique', value='tab-3-statistique', style=tab_style, selected_style=tab_selected_style, children=[
             dcc.Graph(id="graph"),
             dcc.RadioItems(
                 id="choice",
@@ -46,7 +53,7 @@ app.layout = html.Div([
                 inline=True
             )
         ]),
-        dcc.Tab(label='Carte', value='tab-3-carte',style=tab_style, selected_style=tab_selected_style, children=[
+        dcc.Tab(label='Carte', value='tab-4-carte',style=tab_style, selected_style=tab_selected_style, children=[
                         html.Div([
                             html.Iframe(id='map', srcDoc=open('Carte_hotel.html', 'r').read(), width='80%', height='500vh',)
 

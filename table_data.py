@@ -64,8 +64,6 @@ table = dash_table.DataTable( id = 'table_data',
 
 
 tab1 = html.Div([
-                html.P('Projet de Clément REIFFERS, Quentin MOREL, Maëlle MARCELIN, Adrien TIRLEMONT'),
-                html.P("Récupération de données d'hôtel et analyse "),
                 html.Div([
                     html.Div([
                         dcc.Dropdown(
